@@ -1,34 +1,38 @@
+function residual (A, i, K, result) {
+
+    const number = A+i;
+    const residual = (number % K);
+    if (residual === 0) {
+        // result.push(number);
+        result += 1;
+    }
+    return result;
+}
+
 function solution(A=0, B=0, K=1) {
     // write your code in JavaScript (Node.js 8.9.4)
-    const arr = [];
-    const range = B - A;
-    if (range === 0) {
-        arr.push(A);
-    } else {
-        for(let i = 0; i < range; i+=1) {
-            arr.push(B+i);
-        }
-    }
+    var t0 = process.hrtime();
 
-    // array is now created;
-    // const result = [];
+    // const range = B - A;
     let result = 0;
-    for(let i = 0; i < range; i+=1) { 
-        const number = A+i;
-        const residual = (number % K);
-        if (residual === 0) {
-            // result.push(number);
-            result += 1;
+    if (B - A === 0) {
+        result = residual(A, 0, K, result)
+    } else {
+        for(let i = A; i <= B; i+=1) {
+            result = residual(A, i, K, result);
         }
     }
-    console.log(result);
+    // array is now created;
+    var t1 = process.hrtime(t0);
+
+    console.log("result: ", result, ", time: ", ((t1[1]/1000000000) + " seconds"));
   
     return result;
 }
 
 module.exports = function () {
-    const A = 10;
-    const B = 10;
-    const K = 1;
+    const A = 101;
+    const B = 123000000;
+    const K = 10000;
     solution(A, B, K);
 }
