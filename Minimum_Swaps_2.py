@@ -8,7 +8,7 @@ import sys
 
 # Complete the minimumSwaps function below.
 def minimumSwaps(arr):
-    if len(arr) == 1: return 0, arr
+    if len(arr) == 0: return 0
     
     count = 0
     n = len(arr)
@@ -17,14 +17,18 @@ def minimumSwaps(arr):
     arr_dict = {}
     for index, ele in enumerate(arr):
         arr_dict[ele] = index
-
+    
+    print("arr_dict: {}".format(arr_dict))
     # To keep track of visited elements (initalise False)
     visited = [False] * n
-
+    sorted_arr = sorted(arr_dict.items(), key=lambda x: x[0])
+    print("sorted arr {}".format(sorted_arr))
+    
     # Sort the dictionary with the key(ele) value
-    for ele, index in sorted(arr_dict.items(), key=lambda x: x[0]):
+    for ele, index in sorted_arr:
         visited_el = visited[index]
-        print("visited[{1}] {2}, ele {0}, index {1}".format((visited_el), ele, index))
+        print("I {0}, visited[{0}]: {1}".format(index, visited_el))
+        
         # if ele already visited or if its already at correct place, ignore
         if visited_el or ele == index:
             continue
@@ -32,6 +36,7 @@ def minimumSwaps(arr):
         # otherwise count the elements in present cycle
         cycle_count = 0
         i = ele - 1
+        
         while not visited[i]:
             # element visited now
             visited[i] = True
@@ -39,11 +44,11 @@ def minimumSwaps(arr):
             # visit the ele at its index
             i = arr_dict[ele]
             cycle_count += 1
-            print("visited {}, cycle_count {}".format(i, cycle_count))
+            print("not visited {}, cycle_count {}".format(i, cycle_count))
             
 
         # add the cycle_count to count (cycle-1 always for the loop)        
-        count += cycle_count
+        count += cycle_count - 1
         print("count {}".format(count))
         
 
