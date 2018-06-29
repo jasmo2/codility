@@ -25,26 +25,24 @@ def minimumSwaps(arr):
     print("sorted arr {}".format(sorted_arr))
     
     # Sort the dictionary with the key(ele) value
+    i = 0 
     for ele, index in sorted_arr:
         visited_el = visited[index]
-        print("I {0}, visited[{0}]: {1}".format(index, visited_el))
         
         # if ele already visited or if its already at correct place, ignore
-        if visited_el or ele == index:
+        if visited_el:
             continue
 
         # otherwise count the elements in present cycle
-        cycle_count = 0
-        i = ele - 1
-        
-        while not visited[i]:
-            # element visited now
+        cycle_count = 0  
+        while not visited[index]:
+            visited[index] = True
+            key = list(arr_dict.keys())[list(arr_dict.values()).index(i)]
             visited[i] = True
-
-            # visit the ele at its index
-            i = arr_dict[ele]
+            i += 1
+            print("key from index {}:{} && visited array".format(index, key))
+            print(*visited)
             cycle_count += 1
-            print("not visited {}, cycle_count {}".format(i, cycle_count))
             
 
         # add the cycle_count to count (cycle-1 always for the loop)        
