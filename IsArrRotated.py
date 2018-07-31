@@ -1,7 +1,7 @@
 # Implement your function below.
 def is_rotation(list1, list2):
     # check if the list have the same length
-    max_len = len(list1) - 1 
+    max_len = len(list1) - 1
     if max_len != len(list2)-1:
         return False
 
@@ -17,7 +17,7 @@ def is_rotation(list1, list2):
 
         # print('index {}'.format(index_offset))
         dict_item = list1[index_offset]
-        
+
         if dict_item != item:
             return False
         index_offset += 1

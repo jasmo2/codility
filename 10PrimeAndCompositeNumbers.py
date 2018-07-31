@@ -72,6 +72,43 @@
 # expected worst-case space complexity is O(N) (not counting the storage required for input arguments).
 
 
+# you can write to stdout for debugging purposes, e.g.
+# print("this is a debug message")
 
 
+def solution(A):
+    max_divisible_groups = 0
+    peaks_indexes = []
+    a_len = len(A)
 
+    prev_item = A[0]
+    if a_len == 1:
+        return prev_item
+
+    for index in range(1, a_len - 1):
+        posible_peak = A[index]
+        if (prev_item < posible_peak and posible_peak > A[index + 1]):
+            peaks_indexes.append(index)
+        prev_item = posible_peak
+
+    peaks_number = len(peaks_indexes)
+    if peaks_number == 0:
+        return 0
+    if a_len % peaks_number == 0:
+        return peaks_number
+
+    # ToDo missing when the peaks does not mod==0 the a_lenght
+    # top of mind if the original is divided in the middle the peaks could -
+    # - be in one side
+    max_divisible_groups = peaks_number - 1
+    while a_len % max_divisible_groups != 0:
+        max_divisible_groups -= - 1
+
+    # for index in range(0, a_len, ):
+        pass
+        # 12 elements and 2 peaks but just one side has the peaks
+    return max_divisible_groups
+
+
+# print(solution([1, 2, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2]))
+print(solution([1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 3, 1]))

@@ -3,14 +3,14 @@
 # print("this is a debug message")
 
 def solution(A):
-    # write your code in Python 3.6  
+    # write your code in Python 3.6
   dictionary = {}
   popedItems = {}
   arr = list(A)
 
   for dicKey in arr:
     actual_number = A.pop(0)
-    
+
     if actual_number in popedItems:
       continue
 
@@ -29,7 +29,7 @@ def solution(A):
   for num in arr:
       res.append(dictionary[num])
 
-  
+
   print('res ', res)
   return res
 
