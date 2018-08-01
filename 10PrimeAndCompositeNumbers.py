@@ -81,10 +81,10 @@ def solution(A):
     peaks_indexes = []
     a_len = len(A)
 
-    prev_item = A[0]
-    if a_len == 1:
-        return prev_item
+    if a_len < 3:
+        return 0
 
+    prev_item = A[0]
     for index in range(1, a_len - 1):
         posible_peak = A[index]
         if (prev_item < posible_peak and posible_peak > A[index + 1]):
