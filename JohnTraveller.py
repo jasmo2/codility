@@ -32,8 +32,9 @@
 
 def traveler(A, B, C):
     rest_stops = len(C)
-    complete_dict = {}
-    for index, value in enumerate(A):
-        complete_dict[index] = value
-        complete_dict[index + rest_stops] = value
-        complete_dict[index + rest_stops * 2] = value
+    A_sorted = sorted(A) # 29, 50
+    B_sorted = sorted(B) # 37, 61
+    C_sorted = sorted(C) # 37, 70
+
+    for index in range(0, rest_stops - 1):
+        pass
