@@ -29,3 +29,11 @@
 
 # expected worst-case time complexity is O(N*log(N));
 # expected worst-case space complexity is O(N) (not counting the storage required for input arguments).
+
+def traveler(A, B, C):
+    rest_stops = len(C)
+    complete_dict = {}
+    for index, value in enumerate(A):
+        complete_dict[index] = value
+        complete_dict[index + rest_stops] = value
+        complete_dict[index + rest_stops * 2] = value
